@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-path = '/home/Sk09/DjangoApi'
+path = '/home/Sk0909/DjangoApi'
 if path not in sys.path:
     sys.path.append(path)
 
