@@ -4,6 +4,7 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import DestroyAPIView
 from .models import Plant
 from .serializers import PlantSerializer
 
@@ -26,6 +27,9 @@ class PlantViewSet(ModelViewSet):
         return Response("Plant created successfully", status=status.HTTP_200_OK)
 
 
+class PlantDeleteView(DestroyAPIView):
+    queryset = Plant.objects.all()
+    serializer_class = PlantSerializer
 
 
 
