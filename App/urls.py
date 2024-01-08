@@ -9,5 +9,4 @@ router.register(r'plants', views.PlantViewSet, basename='plant')
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('your-model/<int:pk>/', views.PlantDeleteView)
 ]

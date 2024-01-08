@@ -4,7 +4,6 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import DestroyAPIView
 from .models import Plant
 from .serializers import PlantSerializer
 
@@ -26,11 +25,12 @@ class PlantViewSet(ModelViewSet):
         Plant.objects.create(text=text, price=price, picture=picture)
         return Response("Plant created successfully", status=status.HTTP_200_OK)
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-class PlantDeleteView(DestroyAPIView):
-    queryset = Plant.objects.all()
-    serializer_class = PlantSerializer
-
-
+    def perform_destroy(self, instance):
+        instance.delete()
 
 # Create your views here.
