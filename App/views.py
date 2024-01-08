@@ -17,20 +17,6 @@ class PlantViewSet(ModelViewSet):
     search_fields = ['text']
     ordering_fields = ['price']
 
-    def create(self, request, *args, **kwargs):
-        text = request.data["text"]
-        price = request.data["price"]
-        picture = request.data["picture"]
 
-        Plant.objects.create(text=text, price=price, picture=picture)
-        return Response("Plant created successfully", status=status.HTTP_200_OK)
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def perform_destroy(self, instance):
-        instance.delete()
 
 # Create your views here.
